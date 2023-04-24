@@ -1,0 +1,37 @@
+<% if @course.errors %>
+  <%= @course.errors[:message] %>
+<% else %>
+  <div class="row">
+    <div class="col-xs-12">
+      <h1><%= @title %></h1>
+
+    </div>
+  </div>
+
+  <div class="Course">
+    <div class="row">
+      <div class="col-xs-6">
+      </div>
+    </div>
+
+    <div class="row Course-details">
+      <div class="col-xs-5">
+        <h3>Start Dates</h3>
+        <% @course.start_dates.each do |start_date| %>
+          <div class="Course-ingredient">
+            <%= start_date %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="col-xs-6">
+        <h3>Prices</h3>
+        <% price = get_country_related_price(request.location.country, @course) %>
+          <div>Total: <%= price["total"] %> </div>
+          <div>Upfront: <%= price["upfront"] %> </div>
+          <div>Installment: <%= price["installment"] %> </div>
+          <div>Cycles: <%= price["cycles"] %> </div>
+      </div>
+    </div>
+  </div>
+<% end %>
